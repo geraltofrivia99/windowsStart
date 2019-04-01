@@ -1,28 +1,36 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import startLogo from './assets/start.png';
+import cn from 'classnames';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+import { blocksArray } from './const';
+
+import './App.scss';
+
+
+const SmallBox = React.memo(({ img, text }) => (
+  <p className="small-block">
+    <img src={img} alt={text} />
+  </p>
+));
+
+const App = () => {
+  const [isOpen, setOpen] = useState(false);
+  const onStartClick = () => { setOpen(!isOpen) }
+  const startClasNames = cn('menu', { active: isOpen })
+  return (
+    <section className="container">
+      <div className="bottombar">
+        <div className="start" onClick={onStartClick}>
+          <img src={startLogo} alt="start"/>
+        </div>
       </div>
-    );
-  }
+      <div className={startClasNames}>
+        <div className="menu-left-side">
+          {blocksArray.map((block, index) => <SmallBox img={block.img} text={block.name} key={block.name + index} />)}
+        </div>
+      </div>
+    </section>
+  )
 }
 
 export default App;
