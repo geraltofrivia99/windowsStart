@@ -14,7 +14,7 @@ $dark-main: black;
 .bottombar {
   height: $bottom-bar-height;
   width: 100vw;
-  background-color: black;
+  background-color: $dark-main;
   display: grid;
   grid-column-start: 1;
   grid-column-end: 2;
@@ -31,7 +31,7 @@ $dark-main: black;
   transition: background-color .2s;
   will-change: background-color;
   &:hover {
-    background-color: #B5B1B0;
+    background-color: lighten($dark-main,20%);
   }
   & img {
     width: 2rem;
@@ -42,18 +42,18 @@ $dark-main: black;
 .menu {
   width: 0;
   height: 0;
-  border: 1px solid black;
   position: absolute;
   bottom: $bottom-bar-height;
+  background-color: lighten($dark-main,5%);
   left: 0;
   will-change: width, height;
   transition: height .2s, width .2s;
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: $start-block-width auto;
+  grid-template-columns: $start-block-width 1fr 2fr;
   &.active {
     height: 600px;
-    width: 400px;
+    width: 700px;
   }
   & .menu-left-side {
     display: grid;
@@ -61,7 +61,6 @@ $dark-main: black;
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 2;
-    background-color: $dark-main;
     align-content: end;
     color: #fff;
     & .small-block {
@@ -80,5 +79,41 @@ $dark-main: black;
       }
     }
   }
+  .menu-list {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    color: #fff;
+    font-size: 12px;
+    overflow-y: scroll;
+    & .menu-list-title {
+      font-size: 12px;
+      padding-left: 1rem;
+    }
+    & .menu-row {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      & img {
+        width: 1rem;
+        height: 1rem;
+        padding-right: .8rem;
+      }
+      &:hover {
+        background-color: lighten($dark-main,10%);
+      }
+    }
+  }
+  .grid-side {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+}
+.menu-list::-webkit-scrollbar {
+  width: 15px;
 }
 
