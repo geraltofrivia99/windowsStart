@@ -10,6 +10,10 @@ $dark-main: black;
   display: grid;
   grid-template-rows: auto $bottom-bar-height;
   grid-template-columns: auto;
+  background-image: url('./assets//bgi.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .bottombar {
   height: $bottom-bar-height;
@@ -47,10 +51,11 @@ $dark-main: black;
   background-color: lighten($dark-main,5%);
   left: 0;
   will-change: width, height;
-  transition: height .2s, width .2s;
+  // transition: height .1s, width .1s;
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: $start-block-width 1fr 2fr;
+  // padding: 10px;
   &.active {
     height: 600px;
     width: 700px;
@@ -87,6 +92,7 @@ $dark-main: black;
     color: #fff;
     font-size: 12px;
     overflow-y: scroll;
+    padding-top: 10px;
     & .menu-list-title {
       font-size: 12px;
       padding-left: 1rem;
@@ -111,9 +117,55 @@ $dark-main: black;
     grid-column-end: 4;
     grid-row-start: 1;
     grid-row-end: 2;
+    color: #fff;
+    font-size: 12px;
+    overflow-y: scroll;
+    padding: 0 15px;
+    & .grid-side-container {
+      width: 100%;
+      display: inline-flex;
+      // justify-content: space-evenly;
+      flex-flow: wrap;
+    }
+    & .bigBlock {
+      flex: auto;
+      justify-content: center;
+      align-items: center;
+      min-width: 110px;
+      max-width: 110px;
+      height: 110px;
+      color: #fff;
+      margin-bottom: 10px;
+      background-color: lighten($dark-main,10%);
+      &:hover {
+        background-color: lighten($dark-main,20%);
+        outline: 2px solid darken(white, 10%);
+      }
+      & .bigBlock-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        & img {
+          width: 3rem;
+        }
+      }
+      &:nth-child(3n+2) {
+        margin: 0 10px;
+      }
+    }
   }
+}
+.closer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: $bottom-bar-height;
+  right: 0;
 }
 .menu-list::-webkit-scrollbar {
   width: 15px;
 }
-
+.grid-side::-webkit-scrollbar {
+  width: 15px;
+}
